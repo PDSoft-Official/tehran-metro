@@ -1,4 +1,4 @@
-const CACHE = 'tehran-metro-1.5-pwa-2';
+const CACHE = 'tehran-metro-1.5-pwa-3';
 const ASSETS = ['./', './index.html', './pwa.js', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS))));
 self.addEventListener('message', event => { if(event.data === 'ACTIVATE_UPDATE') self.skipWaiting(); });
