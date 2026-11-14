@@ -1,4 +1,4 @@
-const CACHE = 'tehran-metro-1.5-pwa-6';
+const CACHE = 'tehran-metro-1.5-pwa-7';
 const ASSETS = ['./', './index.html', './pwa.js', './manifest.webmanifest', './icon-v3-192.png', './icon-v3-512.png'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(url => new Request(url, {cache: "reload"}))))));
 self.addEventListener('message', event => { if(event.data === 'ACTIVATE_UPDATE') self.skipWaiting(); });
@@ -9,3 +9,5 @@ self.addEventListener('fetch', event => {
  if(event.request.mode === 'navigate') { event.respondWith(caches.open(CACHE).then(c => c.match('./index.html')).then(r => r || fetch(event.request))); return; }
  event.respondWith(caches.match(event.request).then(r => r || fetch(event.request)));
 });
+
+self.addEventListener("message", event => { if(event.data?.type === "GET_VERSION" && event.ports[0]) event.waitUntil(caches.open(CACHE).then(c => c.match("./index.html")).then(r => event.ports[0].postMessage({version:CACHE,ready:!!r}))); });
