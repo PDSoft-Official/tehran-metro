@@ -1,6 +1,6 @@
 (() => {
   if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
-  const BUILD = 'tehran-metro-1.5-pwa-7', KEY = 'metro-pending-update';
+  const BUILD = 'tehran-metro-1.5-pwa-8', KEY = 'metro-pending-update';
   let registration, reloading = false, offered, timer;
   function bubble(text, action) {
     let box = document.getElementById('metro-update-notice');
